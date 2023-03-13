@@ -1,0 +1,77 @@
+MLX_PATH = ./mlx/
+MLX_FILE = libmlx.a
+MLX_MLX = $(addprefix $(MLX_PATH), $(MLX_FILE))
+make -sC $(MLX_PATH)
+$(MLX_MLX) -lmlx -framework OpenGL -framework Appkit
+@make clean -sC $(MLX_PATH)
+make fclean -sC $(MLX_PATH)
+
+
+
+    char temp;
+
+    temp = NULL;
+    if (key == 13)
+    {
+        temp = data.tab[data.posy - 1][data.posx];
+        verif(data, key, temp);
+    }
+    else if (key == 1)
+    {
+        temp = data.tab[data.posy + 1][data.posx];
+        verif(data, key, temp);
+    }
+    else if (key == 0)
+    {
+        temp = data.tab[data.posy][data.posx - 1];
+        verif(data, key, temp);
+    }
+    else if (key == 2)
+    {
+        temp = data.tab[data.posy][data.posx + 1];
+        verif(data, key, temp);
+    }
+
+
+void    update(int key, char car, t_data data)
+{
+    int c;
+
+    c = 0;
+    if (key == 13)
+    {
+        if (data.tab[data.posy - 1][data.posx] == car)
+        {
+            data.tab[data.posy][data.posx] = '0';
+            data.tab[data.posy - 1][data.posx] = 'P';
+            c++;
+        }
+    }
+    else if (key == 1)
+    {
+        if (data.tab[data.posy + 1][data.posx] == car)
+        {
+            data.tab[data.posy][data.posx] = '0';
+            data.tab[data.posy + 1][data.posx] = 'P';
+            c++;
+        }
+    }
+    else if (key == 0)
+    {
+        if (data.tab[data.posy][data.posx - 1] == car)
+        {
+            data.tab[data.posy][data.posx] = '0';
+            data.tab[data.posy][data.posx - 1] = 'P';
+            c++;
+        }
+    }
+    else if (key == 2)
+    {
+        if (data.tab[data.posy][data.posx + 1] == car)
+        {
+            data.tab[data.posy][data.posx] = '0';
+            data.tab[data.posy][data.posx + 1] = 'P';
+            c++;
+        }
+    }
+}
